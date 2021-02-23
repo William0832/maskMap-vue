@@ -2,11 +2,11 @@
 .aside-menu
     .wraps
       label 縣市:
-        select
-          option 台北市
+        select(v-model='currentCity')
+          option(v-for='c in cities', :key='c') {{ c }}
       label 行政區:
-        select
-          option 北投區
+        select(v-model='currentDistrict')
+          option(v-for='d in districts', :key='d.id') {{ d.name }}
 
     .wraps
       label
@@ -56,7 +56,31 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { types } from '../store/types'
 export default {
-  name: 'asideMenu'
+  name: 'asideMenu',
+  computed: {
+    ...mapGetters(['cities', 'districts']),
+    currentCity: {
+      get () {
+        return this.$store.state.currentCity
+      },
+      set (val) {
+        this.$store.commit(types.SET_CURRENT_CITY, val)
+        // set the fisrt district
+        const firstDistrict = this.$store.getters.districts[0].name
+        this.$store.commit(types.SET_CURRENT_DISTRICT, firstDistrict)
+      }
+    },
+    currentDistrict: {
+      get () {
+        return this.$store.state.currentDistrict
+      },
+      set (val) {
+        this.$store.commit(types.SET_CURRENT_DISTRICT, val)
+      }
+    }
+  }
 }
 </script>

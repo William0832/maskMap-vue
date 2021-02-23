@@ -10,9 +10,17 @@ const urls = {
 export default createStore({
   state: {
     currentCity: '臺北市',
-    currentDistrict: '北投區',
+    currentDistrict: '中正區',
     location: [],
     stores: []
+  },
+  getters: {
+    cities (state) {
+      return state.location.map(e => e.name)
+    },
+    districts (state) {
+      return state.location.find(e => e.name === state.currentCity)?.districts || []
+    }
   },
   mutations: {
     [types.SET_CURRENT_CITY] (state, payload) {
