@@ -1,18 +1,10 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import { types } from './types'
 
 const urls = {
   location: 'https://raw.githubusercontent.com/kurotanshi/mask-map/master/raw/area-location.json',
   store: 'https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json'
-}
-
-const types = {
-  SET_CURRENT_CITY: 'SET_CURRENT_CITY',
-  SET_CURRENT_DISTRICT: 'SET_CURRENT_DISTRICT',
-  SET_LOCATION: 'SET_LOCATION',
-  SET_STORES: 'SET_STORES',
-  FETCH_LOCATION: 'FETCH_LOCATION',
-  FETCH_STORES: 'FETCH_STORES'
 }
 
 export default createStore({
@@ -39,7 +31,7 @@ export default createStore({
   actions: {
     async [types.FETCH_LOCATION] ({ commit }) {
       try {
-        const res = await axios.get(urls.city)
+        const res = await axios.get(urls.location)
         const { data } = res
         commit(types.SET_LOCATION, data)
         return {
