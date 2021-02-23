@@ -1,0 +1,85 @@
+*
+  box-sizing: border-box
+
+#app
+  display: block
+  width: 100%
+  height: 100vh
+
+#home
+  display: flex
+  width: 100%
+  height: 100%
+
+.aside-menu
+  width: 25%
+  height: 100%
+  border-ight: 1px solid #aaa
+  overflow-y: scroll
+  background-color: #f1f1f1
+  label
+    display: block
+    position: relative
+    margin-right: 2rem
+    line-height: 2
+  i
+    margin-right: 0.3rem
+  select
+    left: 5rem
+    position: absolute
+    margin-top: 0.3rem
+    min-width: 110px
+    font-size:  1.2rem
+  input
+    padding: 5px 8px
+    line-height: 2
+    width: 110%
+    font-size:  1.2rem
+
+.wraps
+  padding: 1rem
+  border-bottom: 1px solid #666
+
+.store-info
+  cursor: pointer
+  position: relative
+  font-size: 1.1rem
+  line-height: 1.8
+  background-color: #fff
+  h1
+    font-size: 1.6rem
+    margin-bottom: 1rem
+    color: #333
+  .mask-info
+    margin-bottom: 0.6rem
+  &:hover 
+    background-color: #eee
+  &::V-deep .heighlight
+    color: #f08d49
+  
+.btn-store-detail
+  cursor: pointer
+  border-radius: 0.5rem
+  position: absolute
+  right: 1rem
+  top: 1.5rem
+  width: 80px
+  height: 80px
+  display: block
+  padding: 0
+  text-align: center
+
+  i
+    display: block
+    font-size: 2rem
+  &:hover
+    transform: translate(-0.2rem,-0.2rem)
+    box-shadow: 0.3rem 0.2rem rgba(black,0.2)
+
+#mask-map
+  position: relative
+  z-index: 10
+  width: 75%
+  height: 100%
+  background-color: grey
+

@@ -1,8 +1,9 @@
 <template lang='pug'>
-#app
-  router-view
+router-view
 </template>
-
-<style lang="sass">
-
-</style>
+<script>
+export default {
+  namd: 'App'
+}
+</script>
+<style lang='sass' , src='./style.sass'></style>
