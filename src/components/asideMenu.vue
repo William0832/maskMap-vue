@@ -37,7 +37,7 @@
         i.fas.fa-baby
         span 小孩口罩: {{s.mask_child}} 個
       .mask-info 最後更新時間: {{s.updated}}
-      button.btn-store-detail
+      button.btn-store-detail(@click='openInfoBox(s.id)')
         i.fas.fa-info-circle
         | 看詳細資訊
 </template>
@@ -52,6 +52,10 @@ export default {
       if (!this.keywords) return str
       const heighlightEl = `<span class="heighlight"> ${this.keywords} </span>`
       return str.replace(this.keywords, heighlightEl)
+    },
+    openInfoBox (sid) {
+      this.showModal = true
+      this.lightBoxSid = sid
     }
   },
 
@@ -82,6 +86,22 @@ export default {
       },
       set (val) {
         this.$store.commit(types.SET_KEYWORDS, val)
+      }
+    },
+    showModal: {
+      get () {
+        return this.$store.state.showModal
+      },
+      set (val) {
+        this.$store.commit(types.SET_SHOWMODAL, val)
+      }
+    },
+    lightBoxSid: {
+      get () {
+        return this.$store.state.lightBoxSid
+      },
+      set (val) {
+        this.$store.commit(types.SET_LIGHTBOXSID, val)
       }
     }
   }

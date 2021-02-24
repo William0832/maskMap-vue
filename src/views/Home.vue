@@ -3,16 +3,18 @@
   asideMenu
 
   #mask-map
+  light-box
 </template>
 
 <script>
 import asideMenu from '../components/asideMenu'
+import lightBox from '../components/lightBox'
 import { mapActions } from 'vuex'
 import { types } from '../store/types'
 
 export default {
   name: 'Home',
-  components: { asideMenu },
+  components: { asideMenu, lightBox },
   methods: {
     ...mapActions([types.FETCH_LOCATION, types.FETCH_STORES])
 

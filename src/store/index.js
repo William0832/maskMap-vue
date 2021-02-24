@@ -13,7 +13,9 @@ export default createStore({
     currentDistrict: '中正區',
     location: [],
     stores: [],
-    keywords: ''
+    keywords: '',
+    showModal: false,
+    lightBoxSid: null
   },
   getters: {
     cities (state) {
@@ -44,6 +46,12 @@ export default createStore({
     },
     [types.SET_KEYWORDS] (state, payload) {
       state.keywords = payload
+    },
+    [types.SET_SHOWMODAL] (state, payload) {
+      state.showModal = payload
+    },
+    [types.SET_LIGHTBOXSID] (state, payload) {
+      state.lightBoxSid = payload
     }
   },
   actions: {
