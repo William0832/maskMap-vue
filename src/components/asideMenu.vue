@@ -15,41 +15,15 @@
         input(type='text', placeholder='請輸入關鍵字')
 
     ul.store-list
-      li.store-info.wraps
-        h1 XX藥局
+      li.store-info.wraps(v-for='s in filteredStores' ,:key='s.id')
+        h1 {{ s.name }}
         .mask-info
           i.fas.fa-user
-          span 大人口罩: 500個
+          span 大人口罩: {{s.mask_adult}}個
         .mask-info
           i.fas.fa-baby
-          span 小孩小孩口罩: 500個
-        .mask-info 最後更新時間:
-        button.btn-store-detail
-          i.fas.fa-info-circle
-          | 看詳細資訊
-
-      li.store-info.wraps
-        h1 XX藥局
-        .mask-info
-          i.fas.fa-user
-          span 大人口罩: 500個
-        .mask-info
-          i.fas.fa-baby
-          span 小孩小孩口罩: 500個
-        .mask-info 最後更新時間:
-        button.btn-store-detail
-          i.fas.fa-info-circle
-          | 看詳細資訊
-
-      li.store-info.wraps
-        h1 XX藥局
-        .mask-info
-          i.fas.fa-user
-          span 大人口罩: 500個
-        .mask-info
-          i.fas.fa-baby
-          span 小孩小孩口罩: 500個
-        .mask-info 最後更新時間:
+          span 小孩口罩: {{s.mask_child}}個
+        .mask-info 最後更新時間: {{s.updated}}
         button.btn-store-detail
           i.fas.fa-info-circle
           | 看詳細資訊
@@ -61,7 +35,7 @@ import { types } from '../store/types'
 export default {
   name: 'asideMenu',
   computed: {
-    ...mapGetters(['cities', 'districts']),
+    ...mapGetters(['cities', 'districts', 'filteredStores']),
     currentCity: {
       get () {
         return this.$store.state.currentCity

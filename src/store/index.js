@@ -20,6 +20,12 @@ export default createStore({
     },
     districts (state) {
       return state.location.find(e => e.name === state.currentCity)?.districts || []
+    },
+    filteredStores (state) {
+      return state.stores.filter(e =>
+        e.county === state.currentCity &&
+        e.town === state.currentDistrict
+      )
     }
   },
   mutations: {
