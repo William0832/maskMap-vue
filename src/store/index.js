@@ -12,7 +12,8 @@ export default createStore({
     currentCity: '臺北市',
     currentDistrict: '中正區',
     location: [],
-    stores: []
+    stores: [],
+    keywords: ''
   },
   getters: {
     cities (state) {
@@ -22,10 +23,10 @@ export default createStore({
       return state.location.find(e => e.name === state.currentCity)?.districts || []
     },
     filteredStores (state) {
-      return state.stores.filter(e =>
-        e.county === state.currentCity &&
-        e.town === state.currentDistrict
-      )
+      const { stores, keywords, currentCity, currentDistrict } = state
+      return keywords
+        ? stores.filter(e => e.name.includes(keywords))
+        : stores.filter(e => e.county === currentCity && e.town === currentDistrict)
     }
   },
   mutations: {
@@ -40,6 +41,9 @@ export default createStore({
     },
     [types.SET_STORES] (state, payload) {
       state.stores = payload
+    },
+    [types.SET_KEYWORDS] (state, payload) {
+      state.keywords = payload
     }
   },
   actions: {
