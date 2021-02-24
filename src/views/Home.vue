@@ -18,8 +18,14 @@ export default {
 
   },
   mounted () {
-    this.FETCH_LOCATION().then(e => console.log(e))
-    this.FETCH_STORES().then(e => console.log(e))
+    this.FETCH_LOCATION()
+      .then(e => {
+        if (e.state === 'err') console.log(e.errInfo)
+      })
+    this.FETCH_STORES()
+      .then(e => {
+        if (e.state === 'err') console.log(e.errInfo)
+      })
   }
 }
 </script>
