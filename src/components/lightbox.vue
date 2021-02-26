@@ -31,7 +31,7 @@ transition(name='modal')
 <script>
 import { types } from '../store/types'
 export default {
-  name: 'Lightbox',
+  name: 'lightBox',
   computed: {
     showModal: {
       get () {
