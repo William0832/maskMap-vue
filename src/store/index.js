@@ -29,6 +29,9 @@ export default createStore({
       return keywords
         ? stores.filter(e => e.name.includes(keywords))
         : stores.filter(e => e.county === currentCity && e.town === currentDistrict)
+    },
+    currentDistrictInfo (state, getters) {
+      return getters.districts.find(d => d.name === state.currentDistrict) || {}
     }
   },
   mutations: {
