@@ -27,7 +27,8 @@
   ul.store-list
     li.store-info.wraps(
       v-for='s in filteredStores',
-      :key='s.id'
+      :key='s.id',
+      @click="$emit('triggerMarkerPopup', s.id)"
     )
       h1(v-html='keywordHeighlight(s.name)')
       .mask-info

@@ -1,22 +1,30 @@
 <template lang='pug'>
 #home
-  asideMenu
+  asideMenu(
+    @triggerMarkerPopup="openPopup",
+    ref='menu'
+  )
 
-  #mask-map
-  light-box
+  maskMap(ref='map')
+  lightBox
 </template>
 
 <script>
 import asideMenu from '../components/asideMenu'
 import lightBox from '../components/lightBox'
+import maskMap from '../components/maskMap'
+
 import { mapActions } from 'vuex'
 import { types } from '../store/types'
 
 export default {
   name: 'Home',
-  components: { asideMenu, lightBox },
+  components: { asideMenu, lightBox, maskMap },
   methods: {
-    ...mapActions([types.FETCH_LOCATION, types.FETCH_STORES])
+    ...mapActions([types.FETCH_LOCATION, types.FETCH_STORES]),
+    openPopup (id) {
+      this.$refs.map.triggerPopup(id)
+    }
 
   },
   mounted () {
