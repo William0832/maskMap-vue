@@ -6,7 +6,7 @@
   )
 
   maskMap(ref='map')
-  lightBox
+  lightBox(ref='box')
 </template>
 
 <script>
@@ -36,6 +36,7 @@ export default {
       .then(e => {
         if (e.state === 'err') console.log(e.errInfo)
       })
+    window.$vue = this
   }
 }
 </script>
