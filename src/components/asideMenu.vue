@@ -27,7 +27,6 @@
   ul.store-list
     li.store-info.wraps(
       v-for='s in filteredStores',
-      :id='`${s.id}`'
       :key='s.id',
       @click="$emit('triggerMarkerPopup', s.id)"
     )
