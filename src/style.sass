@@ -12,10 +12,12 @@
   height: 100%
 
 .aside-menu
+  display: flex
+  flex-direction: column
   width: 25%
   height: 100%
-  border-ight: 1px solid #aaa
-  overflow-y: scroll
+  border-right: 1px solid #aaa
+  overflow: hidden
   background-color: #f1f1f1
   label
     display: block
@@ -36,6 +38,9 @@
     width: 110%
     font-size:  1.2rem
 
+.store-list
+  overflow-y: scroll
+  scroll-behavior: smooth
 .wraps
   padding: 1rem
   border-bottom: 1px solid #666
@@ -56,7 +61,7 @@
     background-color: #eee
   &::V-deep .heighlight
     color: #f08d49
-  
+
 .btn-store-detail
   cursor: pointer
   border-radius: 0.5rem
@@ -85,5 +90,9 @@
 .heighlight 
   background-color: #f0f000
 
-
+.link-style-none
+  text-decoration: none
+  color: #000
+  &:active
+    color: #000
 
