@@ -30,6 +30,11 @@ export default {
         accessToken: 'pk.eyJ1Ijoid2lsbGlhbTA4MzIiLCJhIjoiY2tsbHN4dzh5MDJlbzJ3cWkzN2N6OWt6ZSJ9.qEc_noLehUDG9F2p-t-Ceg'
       }
     ).addTo(this.map)
+    window.openLightBox = function (sId) {
+      window.$vue.$refs.menu.openInfoBox(sId)
+      const el = window.document.getElementById(sId)
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
   },
   computed: {
     ...mapGetters(['currentDistrictInfo', 'filteredStores'])
@@ -58,7 +63,10 @@ export default {
       const marker = L.marker([item.lng, item.lat], ICON)
       marker
         .addTo(this.map)
-        .bindPopup(`<h2 class="popup-name">${item.name}</h2>`)
+        .bindPopup(`
+          <h2 class="popup-name">${item.name}</h2>
+          <button class='btn-info' onclick='openLightBox(${item.id})'> Show info </button>
+        `)
       marker.markerId = item.id
       marker.lng = item.lng
       marker.lat = item.lat
@@ -82,5 +90,6 @@ export default {
 </script>
 
 <style lang='sass'>
-
+.btn-info
+  margin: 0.5rem
 </style>

@@ -3,7 +3,7 @@ transition(name='modal')
 .modal-mask(v-show='showModal')
   .modal-wrapper(@click.self='close()')
     .modal-container
-      .modal-body(v-if='currentStore')
+      .modal-body(v-if='currentStore || lastestStore')
         .store-title {{currentStore.name}}
         .store-table.store-text 營業時間
           table
@@ -32,6 +32,11 @@ transition(name='modal')
 import { types } from '../store/types'
 export default {
   name: 'lightBox',
+  data () {
+    return {
+      lastestStore: null
+    }
+  },
   computed: {
     showModal: {
       get () {
@@ -50,7 +55,8 @@ export default {
       }
     },
     currentStore () {
-      return this.$store.state.stores.find(e => e.id === this.lightBoxSid)
+      const store = this.$store.state.stores.find(e => e.id === this.lightBoxSid)
+      return store || this.lastestStore
     },
     servicePeriod () {
       const p = this.currentStore
@@ -71,6 +77,11 @@ export default {
   methods: {
     close () {
       this.showModal = false
+    }
+  },
+  watch: {
+    lightBoxSid (nv) {
+      this.lastestStore = this.$store.state.stores.find(e => e.id === `${nv}`)
     }
   }
 }
